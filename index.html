@@ -18,16 +18,16 @@
   <body>
     <div class="details">
       <div class="details__container">
-        <h1 class="details__container-title">Nazwa zadania</h1>
-        <p class="details__container-text">
+        <h1>Nazwa zadania</h1>
+        <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quo ad
           facere sapiente repellat nemo atque est obcaecati magnam aut dolorem
           quas laboriosam vero, eius laborum dolore quasi voluptates in.
         </p>
-        <h2 class="details__container-date">Data wprowadzenia zadania:</h2>
-        <p class="details__container-enter-date"></p>
-        <h2 class="details__container-date">Data zakończenia zadania:</h2>
-        <p class="details__container-finish-date"></p>
+        <h3>Data wprowadzenia zadania:</h2>
+        <p></p>
+        <h3>Data zakończenia zadania:</h2>
+        <p></p>
       </div>
     </div>
 
@@ -50,6 +50,7 @@
         >
         <input type="date" class="todo__header-date" />
         <button class="todo__header--add-btn">Dodaj zadanie</button>
+        <p class="todo__header-alert">Uzupełnij wszystkie pola!</p>
       </div>
 
       <div class="todo-list">
@@ -58,7 +59,7 @@
 
         <ul class="todo-list__list">
           <li id="test">
-            Zarobić zakupy
+            Zrobić zakupy
             <div class="tools">
               <button class="tools__complete">
                 <i class="fas fa-check"></i>
@@ -111,26 +112,27 @@
         </ul>
       </div>
     </div>
-
-    <div class="popup">
-      <h3>Edytuj zadanie:</h3>
-      <div class="popup__body">
-        <p class="popup__body-info"></p>
-        <input
-          type="text"
-          class="popup__body-input"
-          placeholder="Wprowadź nową treść zadania..."
-        />
-        <textarea
-          class="popup__body-details"
-          rows="5"
-          style="resize: none"
-          placeholder="Wpisz nowe szczegóły zadania"
-        ></textarea>
-        <label for="date">Wprowadź nową datę zakończenia zadania:</label>
-        <input type="date" id="new-finish-date" />
-        <button class="popup__body-btn--accept">Zatwierdź</button>
-        <button class="popup__body-btn--cancel">Anuluj</button>
+    <div class="popup-shadow">
+      <div class="popup">
+        <h3>Edytuj zadanie:</h3>
+        <div class="popup__body">
+          <p class="popup__body-info"></p>
+          <input
+            type="text"
+            class="popup__body-input"
+            placeholder="Wpisz nową treść zadania..."
+          />
+          <textarea
+            class="popup__body-details"
+            rows="5"
+            style="resize: none"
+            placeholder="Wpisz nowe szczegóły zadania..."
+          ></textarea>
+          <label for="date">Wprowadź nową datę zakończenia zadania:</label>
+          <input type="date" id="new-finish-date" />
+          <button class="popup__body-btn--accept">Zatwierdź</button>
+          <button class="popup__body-btn--cancel">Anuluj</button>
+        </div>
       </div>
     </div>
 
