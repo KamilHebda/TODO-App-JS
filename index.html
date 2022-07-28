@@ -33,7 +33,7 @@
 
     <div class="todo">
       <div class="todo__header">
-        <h1>TODO List</h1>
+        <h1><i class="fa-solid fa-note-sticky"></i>TODO List</h1>
         <input
           type="text"
           class="todo__header-title"
@@ -58,19 +58,16 @@
         <p class="todo-list__alert-info">Brak zadań na liście.</p>
 
         <ul class="todo-list__list">
-          <li id="test">
+          <!-- <li id="test">
             Zrobić zakupy
             <div class="tools">
               <button class="tools__complete">
                 <i class="fas fa-check"></i>
-              </button>
-              <button class="tools__edit">
+              </button><button class="tools__edit">
                 <i class="fa-solid fa-pen-to-square"></i>
-              </button>
-              <button class="tools__details">
+              </button><button class="tools__details">
                 <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-              <button class="tools__delete">
+              </button><button class="tools__delete">
                 <i class="fas fa-times"></i>
               </button>
             </div>
@@ -108,7 +105,7 @@
                 <i class="fas fa-times"></i>
               </button>
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -116,7 +113,7 @@
       <div class="popup">
         <h3>Edytuj zadanie:</h3>
         <div class="popup__body">
-          <p class="popup__body-info"></p>
+          <p class="popup__body-info">Uzupełnij wszystkie pola</p>
           <input
             type="text"
             class="popup__body-input"
@@ -129,7 +126,7 @@
             placeholder="Wpisz nowe szczegóły zadania..."
           ></textarea>
           <label for="date">Wprowadź nową datę zakończenia zadania:</label>
-          <input type="date" id="new-finish-date" />
+          <input type="date" class="new-finish-date" />
           <button class="popup__body-btn--accept">Zatwierdź</button>
           <button class="popup__body-btn--cancel">Anuluj</button>
         </div>

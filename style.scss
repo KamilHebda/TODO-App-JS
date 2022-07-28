@@ -44,15 +44,19 @@ body {
   background: #fff;
   box-shadow: 4px 4px 5px rgba(82, 82, 82, 0.4);
   border-radius: 5px;
-  &__header h1 {
-    margin-bottom: 20px;
-    color: $light;
-    text-transform: uppercase;
-  }
+
   &__header {
     padding: 40px;
     border-radius: 5px 5px 0 0;
     background-image: linear-gradient(340deg, #045de9 0%, #09c6f9 100%);
+    & h1 {
+      margin-bottom: 20px;
+      color: $light;
+      text-transform: uppercase;
+      & .fa-note-sticky {
+        margin-right: 10px;
+      }
+    }
     &-title {
       width: 90%;
       padding: 10px 20px;
@@ -90,6 +94,7 @@ body {
       color: $light;
     }
     &-alert {
+      visibility: hidden;
       margin-top: 20px;
       color: tomato;
     }
@@ -118,13 +123,6 @@ body {
   }
 }
 
-.completed {
-  font-size: 12px;
-  font-style: italic;
-  color: $light-dark;
-  text-decoration: line-through;
-}
-
 .tools {
   display: inline-block;
   & button {
@@ -149,6 +147,13 @@ body {
   &__delete {
     color: tomato;
   }
+}
+
+.completed {
+  font-size: 12px;
+  font-style: italic;
+  color: $light-dark;
+  text-decoration: line-through;
 }
 
 .popup-shadow {
@@ -185,8 +190,8 @@ body {
     padding: 10px;
     width: 80%;
     &-info {
-      margin-bottom: 20px;
-      color: $light;
+      visibility: hidden;
+      color: tomato;
     }
     & input,
     & textarea {
