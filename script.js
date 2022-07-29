@@ -16,6 +16,7 @@ let POPUP;
 let EDITEDTODO;
 let POPUPINPUT;
 let POPUPTEXTAREA;
+let POPUPINFO;
 let ADDPOPUPBTN;
 let CLOSEPOPUPBTN;
 
@@ -38,6 +39,7 @@ const prepareDOMElements = () => {
   POPUPINPUT = document.querySelector(".popup__body-input");
   POPUPTEXTAREA = document.querySelector(".popup__body-details");
   POPUPDATE = document.querySelector(".new-finish-date");
+  POPUPINFO = document.querySelector(".popup__body-info");
   ADDPOPUPBTN = document.querySelector(".popup__body-btn--accept");
   CLOSEPOPUPBTN = document.querySelector(".popup__body-btn--cancel");
 };
@@ -45,6 +47,7 @@ const prepareDOMElements = () => {
 const prepareDOMEvents = () => {
   ADDBTN.addEventListener("click", addNewTask);
   ULLIST.addEventListener("click", checkClick);
+  ADDPOPUPBTN.addEventListener("click", changeToDo);
 };
 
 const addNewTask = () => {
@@ -117,15 +120,6 @@ const checkClick = (e) => {
   }
 };
 
-const deleteTask = (e) => {
-  const deleteToDo = e.target.closest("li");
-  deleteToDo.remove();
-
-  if (ALLTASKS.length === 0) {
-    ALERTINFO.innerText = "Brak zadań na liście";
-  }
-};
-
 const editTask = (e) => {
   const oldToDo = e.target.closest("li").id;
   EDITEDTODO = document.getElementById(oldToDo);
@@ -136,6 +130,29 @@ const editTask = (e) => {
   POPUP.style.display = "flex";
 };
 
+const changeToDo = (id) => {
+  if (
+    POPUPINPUT.value !== "" &&
+    POPUPTEXTAREA.value !== "" &&
+    POPUPDATE.value !== ""
+  ) {
+    EDITEDTODO.firstChild.textContent = POPUPINPUT.value;
+    NEWTASKTEXTAREA[id] = POPUPTEXTAREA.value;
+    NEWTASKDATE[id] = POPUPDATE.value;
+  } else {
+    POPUPINFO.style.visibility = "visible";
+  }
+};
+
 const displayTask = (e) => {};
+
+const deleteTask = (e) => {
+  const deleteToDo = e.target.closest("li");
+  deleteToDo.remove();
+
+  if (ALLTASKS.length === 0) {
+    ALERTINFO.innerText = "Brak zadań na liście";
+  }
+};
 
 document.addEventListener("DOMContentLoaded", main);
