@@ -15,7 +15,6 @@ let CURRENTID;
 let DETAILS;
 let DETAILSCONTAINER;
 let DETAILSTODO;
-let DETAILSCLOSEBTN;
 let POPUP;
 let EDITEDTODO;
 let POPUPINPUT;
@@ -53,6 +52,7 @@ const prepareDOMEvents = () => {
   ULLIST.addEventListener("click", checkClick);
   ADDPOPUPBTN.addEventListener("click", changeToDo);
   CLOSEPOPUPBTN.addEventListener("click", closePopup);
+  DETAILS.addEventListener("click", checkTaskDetails);
 };
 
 const addNewTask = () => {
@@ -66,7 +66,7 @@ const addNewTask = () => {
     NEWTASK.setAttribute("id", ID);
     NEWTASKTEXTAREA.push(TODOTEXTAREA.value);
     NEWTASKDATE.push(TODODATE.value);
-    NEWTASKSETDATE.push(new Date());
+    NEWTASKSETDATE.push(new Date().toISOString().slice(0, 10));
     ULLIST.appendChild(NEWTASK);
     createToolsArea();
 
@@ -158,11 +158,12 @@ const displayTask = (e) => {
   DETAILSCONTAINER.classList.add("details__container");
   DETAILS.appendChild(DETAILSCONTAINER);
   DETAILSCONTAINER.innerHTML = `<h1>Nazwa zadania: ${DETAILSTODO.firstChild.textContent}</h1>
-        <p> Szczegóły: ${NEWTASKTEXTAREA[CURRENTID]}</p>
+        <p>Szczegóły: ${NEWTASKTEXTAREA[CURRENTID]}</p>
         <h3>Data wprowadzenia zadania:</h2>
         <p>${NEWTASKSETDATE[CURRENTID]}</p>
         <h3>Data zakończenia zadania:</h2>
-        <p>${NEWTASKDATE[CURRENTID]}</p>`;
+        <p>${NEWTASKDATE[CURRENTID]}</p>
+        <button class="close__details">Zamknij</button>`;
 };
 
 const deleteTask = (e) => {
@@ -178,6 +179,19 @@ const deleteTask = (e) => {
 const closePopup = () => {
   POPUP.style.display = "none";
   POPUPINFO.style.visibility = "hidden";
+};
+
+const closeTaskDetails = (e) => {
+  const closeTODODetails = e.target.closest("div");
+  closeTODODetails.remove();
+};
+
+const checkTaskDetails = (e) => {
+  if (e.target.classList.value !== "") {
+    if (e.target.closest("button").classList.contains("close__details")) {
+      closeTaskDetails(e);
+    }
+  }
 };
 
 document.addEventListener("DOMContentLoaded", main);

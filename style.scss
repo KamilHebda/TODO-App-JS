@@ -21,6 +21,10 @@ body {
 
 .details {
   flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   &__container {
     color: $deep-dark;
     & h1 {
@@ -31,6 +35,22 @@ body {
     & h2,
     p {
       margin-bottom: 20px;
+    }
+    & button {
+      width: 90%;
+      margin: 20px;
+      padding: 10px 20px;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      border: 1px solid $light-dark;
+      border-radius: 5px;
+      color: $light-dark;
+      background-color: $light;
+      transition: background-color 0.3s, color 0.3s;
+      &:hover {
+        color: $light;
+        background-color: $light-dark;
+      }
     }
   }
 }
@@ -104,7 +124,7 @@ body {
     padding: 20px 0;
     &__alert-info {
       margin-top: 20px;
-      color: tomato;
+      color: $dark-blue;
     }
     & h3 {
       text-transform: uppercase;
