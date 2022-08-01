@@ -11,7 +11,11 @@ let NEWTASKDATE = [];
 let NEWTASKSETDATE = [];
 let ALLTASKS;
 let ID = 0;
+let CURRENTID;
 let DETAILS;
+let DETAILSCONTAINER;
+let DETAILSTODO;
+let DETAILSCLOSEBTN;
 let POPUP;
 let EDITEDTODO;
 let POPUPINPUT;
@@ -48,6 +52,7 @@ const prepareDOMEvents = () => {
   ADDBTN.addEventListener("click", addNewTask);
   ULLIST.addEventListener("click", checkClick);
   ADDPOPUPBTN.addEventListener("click", changeToDo);
+  CLOSEPOPUPBTN.addEventListener("click", closePopup);
 };
 
 const addNewTask = () => {
@@ -121,38 +126,58 @@ const checkClick = (e) => {
 };
 
 const editTask = (e) => {
-  const oldToDo = e.target.closest("li").id;
-  EDITEDTODO = document.getElementById(oldToDo);
+  CURRENTID = e.target.closest("li").id;
+  EDITEDTODO = document.getElementById(CURRENTID);
   POPUPINPUT.value = EDITEDTODO.firstChild.textContent;
-  POPUPTEXTAREA.value = NEWTASKTEXTAREA[oldToDo];
-  POPUPDATE.value = NEWTASKDATE[oldToDo];
+  POPUPTEXTAREA.value = NEWTASKTEXTAREA[CURRENTID];
+  POPUPDATE.value = NEWTASKDATE[CURRENTID];
 
   POPUP.style.display = "flex";
 };
 
-const changeToDo = (id) => {
+const changeToDo = () => {
   if (
     POPUPINPUT.value !== "" &&
     POPUPTEXTAREA.value !== "" &&
     POPUPDATE.value !== ""
   ) {
     EDITEDTODO.firstChild.textContent = POPUPINPUT.value;
-    NEWTASKTEXTAREA[id] = POPUPTEXTAREA.value;
-    NEWTASKDATE[id] = POPUPDATE.value;
+    NEWTASKTEXTAREA[CURRENTID] = POPUPTEXTAREA.value;
+    NEWTASKDATE[CURRENTID] = POPUPDATE.value;
+    POPUP.style.display = "none";
+    POPUPINFO.style.visibility = "hidden";
   } else {
     POPUPINFO.style.visibility = "visible";
   }
 };
 
-const displayTask = (e) => {};
+const displayTask = (e) => {
+  CURRENTID = e.target.closest("li").id;
+  DETAILSTODO = document.getElementById(CURRENTID);
+  DETAILSCONTAINER = document.createElement("div");
+  DETAILSCONTAINER.classList.add("details__container");
+  DETAILS.appendChild(DETAILSCONTAINER);
+  DETAILSCONTAINER.innerHTML = `<h1>Nazwa zadania: ${DETAILSTODO.firstChild.textContent}</h1>
+        <p> Szczegóły: ${NEWTASKTEXTAREA[CURRENTID]}</p>
+        <h3>Data wprowadzenia zadania:</h2>
+        <p>${NEWTASKSETDATE[CURRENTID]}</p>
+        <h3>Data zakończenia zadania:</h2>
+        <p>${NEWTASKDATE[CURRENTID]}</p>`;
+};
 
 const deleteTask = (e) => {
   const deleteToDo = e.target.closest("li");
   deleteToDo.remove();
+  DETAILSCONTAINER.remove();
 
   if (ALLTASKS.length === 0) {
     ALERTINFO.innerText = "Brak zadań na liście";
   }
+};
+
+const closePopup = () => {
+  POPUP.style.display = "none";
+  POPUPINFO.style.visibility = "hidden";
 };
 
 document.addEventListener("DOMContentLoaded", main);
